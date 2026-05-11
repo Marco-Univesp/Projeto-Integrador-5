@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Painel Admin{% endblock %}
+
+{% block content %}
+  <!-- Mensagens flash -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-container">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- Cards de estatísticas -->
+  <section class="cards">
+    <div class="card success">Clientes: {{ total_clientes }}</div>
+    <div class="card warning">Devoluções pendentes: {{ devolucoes_pendentes }}</div>
+    <div class="card info">Estoque físico: {{ estoque_fisico }}</div>
+  </section>
+
+  <!-- Tabela de devoluções -->
+  <section class="tabela">
+    <h2>Últimas solicitações</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Pedido</th>
+          <th>Cliente</th>
+          <th>Motivo</th>
+          <th>Status</th>
+          <th>Quantidade</th>
+          <th>Preço</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for devolucao in devolucoes %}
+        <tr>
+          <td>{{ devolucao.id }}</td>
+          <td>{{ devolucao.pedido }}</td>
+          <td>{{ devolucao.nome }}</td>
+          <td>{{ devolucao.motivo }}</td>
+          <td class="status {{ devolucao.status|lower }}">{{ devolucao.status }}</td>
+          <td>{{ devolucao.quantidade }}</td>
+          <td>R$ {{ devolucao.preco }}</td>
+          <td>
+            <form method="POST" action="{{ url_for('atualizar_status', id=devolucao.id) }}">
+              <select name="status">
+                <option value="Pendente" {% if devolucao.status == 'Pendente' %}selected{% endif %}>Pendente</option>
+                <option value="Aprovado" {% if devolucao.status == 'Aprovado' %}selected{% endif %}>Aprovado</option>
+                <option value="Rejeitado" {% if devolucao.status == 'Rejeitado' %}selected{% endif %}>Rejeitado</option>
+              </select>
+              <button type="submit">Atualizar</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endblock %}

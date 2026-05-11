@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu do Cliente</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h2 {
+      margin-bottom: 30px;
+    }
+    .menu-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .menu-buttons a {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #32bcae;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    .menu-buttons a:hover {
+      background-color: #26998c;
+    }
+  </style>
+</head>
+<body>
+  <h2>Bem-vindo ao Menu do Clientex</h2>
+  <div class="menu-buttons">
+    <a href="{{ url_for('registro_devolucao') }}">Cadastrar Devolução</a>
+  <a href="{{ url_for('estoque_devolucao') }}">Acompanhar Status</a>
+
+  </div>
+</body>
+</html>

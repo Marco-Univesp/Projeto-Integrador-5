@@ -1,0 +1,311 @@
+/* === TABELA DE ESTOQUE FÍSICO === */
+#tabelaEstoque,
+table.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #0b1e2d; /* azul escuro */
+  color: #fff;
+}
+
+#tabelaEstoque th,
+table.dataTable thead th {
+  background-color: #0b1e2d;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+#tabelaEstoque td,
+table.dataTable tbody td {
+  background-color: #12283a; /* tom ligeiramente mais claro */
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+#tabelaEstoque tr:nth-child(even) td,
+table.dataTable tbody tr:nth-child(even) td {
+  background-color: #16344a; /* alternância suave */
+}
+
+#tabelaEstoque tbody tr:hover,
+table.dataTable tbody tr:hover {
+  background-color: #32bcae;
+  color: #fff;
+}
+
+/* Campo de busca e paginação */
+.dataTables_wrapper .dataTables
+
+/* === STATUS DO ESTOQUE === */
+.status-estoque {
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Em Estoque → verde */
+.status-estoque.em-estoque {
+  background-color: #28a745;
+  color: #fff;
+}
+
+/* Baixo Estoque → laranja */
+.status-estoque.baixo-estoque {
+  background-color: #ffc107;
+  color: #333;
+}
+
+/* Fora de Estoque → vermelho */
+.status-estoque.fora-estoque {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Input de quantidade */
+.qtd-input {
+  width: 60px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #32bcae;
+  background-color: #16344a;
+  color: #fff;
+  text-align: center;
+}
+
+/* Botão salvar */
+.qtd-input + button,
+.status-select + button {
+  background-color: #32bcae;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.qtd-input + button:hover,
+.status-select + button:hover {
+  background-color: #27988c;
+}
+
+/* Dropdown de status */
+.status-select {
+  background-color: #16344a;
+  color: #fff;
+  border: 1px solid #32bcae;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+/* Filtro de status */
+.filtro-status {
+  margin: 1rem 0;
+  color: #fff;
+}
+
+.filtro-status select {
+  background-color: #16344a;
+  color: #fff;
+  border: 1px solid #32bcae;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+
+/* Input de quantidade */
+.qtd-input {
+  width: 60px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #32bcae;
+  background-color: #16344a;
+  color: #fff;
+  text-align: center;
+}
+
+/* Botão salvar */
+.qtd-input + button,
+.status-select + button {
+  background-color: #32bcae;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.qtd-input + button:hover,
+.status-select + button:hover {
+  background-color: #27988c;
+}
+
+/* Dropdown de status */
+.status-select {
+  background-color: #16344a;
+  color: #fff;
+  border: 1px solid #32bcae;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+/* Filtro de status */
+.filtro-status {
+  margin: 1rem 0;
+  color: #fff;
+}
+
+.filtro-status select {
+  background-color: #16344a;
+  color: #fff;
+  border: 1px solid #32bcae;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+/* Imagem do descarte */
+.img-descarte {
+  max-width: 80px;
+  border-radius: 5px;
+  border: 1px solid #32bcae;
+}
+
+/* Tabela de descarte */
+#tabelaDescarte {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #0b1e2d;
+  color: #fff;
+}
+
+#tabelaDescarte th {
+  background-color: #0b1e2d;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+#tabelaDescarte td {
+  background-color: #12283a;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+#tabelaDescarte tr:nth-child(even) td {
+  background-color: #16344a;
+}
+
+#tabelaDescarte tbody tr:hover {
+  background-color: #32bcae;
+  color: #fff;
+}
+
+.btn-estoque {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.btn-estoque:hover {
+  background-color: #1e7e34;
+}
+
+.btn-descarte {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.btn-descarte:hover {
+  background-color: #a71d2a;
+}
+
+/* Botão de descarte no estoque */
+.btn-descarte {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.btn-descarte:hover {
+  background-color: #a71d2a;
+}
+/* Input de quantidade */
+.qtd-input {
+  width: 60px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #32bcae;
+  background-color: #16344a;
+  color: #fff;
+  text-align: center;
+}
+
+/* Botão salvar */
+.qtd-input + button,
+.status-select + button {
+  background-color: #32bcae;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.qtd-input + button:hover,
+.status-select + button:hover {
+  background-color: #27988c;
+}
+
+/* Dropdown de status */
+.status-select {
+  background-color: #16344a;
+  color: #fff;
+  border: 1px solid #32bcae;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+/* Filtro de status */
+.filtro-status {
+  margin: 1rem 0;
+  color: #fff;
+}
+
+.filtro-status select {
+  background-color: #16344a;
+  color: #fff;
+  border: 1px solid #32bcae;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+/* Botão de descarte */
+.btn-descarte {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.btn-descarte:hover {
+  background-color: #a71d2a;
+}

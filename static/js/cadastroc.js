@@ -1,58 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  // Seleciona o formulário
   const form = document.getElementById("cadastroForm");
-
-  // Seleciona a modal
   const modal = document.getElementById("modal");
 
-  // Função para abrir a modal
-  function abrirModal() {
-    modal.style.display = "flex"; // mostra a modal
-  }
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  // Função para fechar a modal
-  window.fecharModal = function () {
-    modal.style.display = "none"; // esconde a modal
-  }
+    const formData = new FormData(form);
 
-  // Função ao clicar no OK
-  window.confirmarEnvio = function () {
-    fecharModal();
+    try {
+      const res = await fetch("/cadastroc", {
+        method: "POST",
+        body: formData
+      });
 
-    // Redireciona para login (opcional)
-    window.location.href = "/loginc";
-  }
+      const result = await res.json();
+      console.log("Resposta do servidor:", result);
 
-  // Evento de envio do formulário
-  form.addEventListener("submit", function (e) {
-    e.preventDefault(); // impede reload da página
-
-    // Pegando os valores dos inputs
-    const nome = document.getElementById("nome").value.trim();
-    const cpf = document.getElementById("cpf").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const senha = document.getElementById("senha").value.trim();
-    const confirmarSenha = document.getElementById("confirmarSenha").value.trim();
-
-    // Validação simples
-    if (!nome || !cpf || !email || !senha || !confirmarSenha) {
-      alert("Preencha todos os campos!");
-      return;
+      if (result.status === "success") {
+        modal.style.display = "flex";
+      } else {
+        alert(result.message);
+      }
+    } catch (err) {
+      console.error("Erro no cadastro:", err);
+      alert("Erro ao conectar com o servidor.");
     }
-
-    if (senha !== confirmarSenha) {
-      alert("As senhas não coincidem!");
-      return;
-    }
-
-    // 🔥 AQUI você pode integrar com Flask depois
-    // Por enquanto só simula sucesso
-
-    console.log("Cadastro realizado com sucesso!");
-
-    // Abre a modal
-    abrirModal();
   });
-
 });
+
+// Funções da modal
+function fecharModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+function confirmarEnvio() {
+  fecharModal();
+  // Redireciona para login após cadastro
+  window.location.href = "/loginc";
+}

@@ -1,0 +1,97 @@
+/* Layout geral */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f6f9;
+  color: #333;
+}
+
+header {
+  background: #2c3e50; /* azul escuro */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  max-width: 600px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"], select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, select:focus {
+  border-color: #2c3e50;
+  outline: none;
+}
+
+/* Botão */
+button.btn {
+  background: #27ae60; /* verde */
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s ease;
+}
+
+button.btn:hover {
+  background
+
+  /* Ícones de status */
+.status-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.status-option::before {
+  font-size: 18px;
+}
+
+
+/* Ícones diferentes para cada status */
+.status-option.registrada::before {
+  content: "📝"; /* Solicitação registrada */
+}
+
+.status-option.analise::before {
+  content: "🔍"; /* Produto em análise */
+}
+
+.status-option.aceito::before {
+  content: "✅"; /* Produto aceito */
+}
+
+.status-option.transporte::before {
+  content: "📦"; /* Produto em transporte */
+}
+
+.status-option.concluida::before {
+  content: "🎉"; /* Devolução concluída */
+}

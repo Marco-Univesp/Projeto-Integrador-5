@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel Admin - Status</title>
+  <link rel="stylesheet" href="../css/status_admin.css">
+</head>
+<body>
+  <header>
+    <h1>Painel Administrativo</h1>
+  </header>
+  <main>
+    <form method="POST">
+      <label for="solicitacao">ID da Solicitação:</label>
+      <input type="text" id="solicitacao" name="solicitacao" required>
+
+      <label for="status">Novo Status:</label>
+      <select id="status" name="status" required>
+        <option value="registrada">📝 Solicitação registrada</option>
+        <option value="analise">🔍 Produto em análise</option>
+        <option value="aceito">✅ Produto aceito</option>
+        <option value="transporte">📦 Produto em transporte</option>
+        <option value="concluida">🎉 Devolução concluída</option>
+      </select>
+
+      <button type="submit" class="btn">Salvar</button>
+    </form>
+
+    <h2>Histórico de Status</h2>
+    <ul>
+      {% for r in registros %}
+        <li>{{ r['solicitacao_id'] }} → {{ r['status'] }} ({{ r['atualizado_em'] }})</li>
+      {% endfor %}
+    </ul>
+  </main>
+</body>
+</html>

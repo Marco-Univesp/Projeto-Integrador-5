@@ -1,7 +1,7 @@
 [project]
-name = "projeto-integrador-5"
+name = "projeto-integrador-4"
 version = "0.1.0"
-description = "Disciplina Projeto Integrador 5 2026 grupo 12"
+description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

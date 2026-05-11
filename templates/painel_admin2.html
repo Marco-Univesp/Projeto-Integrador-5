@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Painel Corporativo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+    }
+
+    .admin-header {
+      background: #32bcae;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .admin-header nav a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .cards {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem;
+    }
+
+    .card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      flex: 1;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-weight: bold;
+    }
+
+    .tabela {
+      margin: 1rem;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: #32bcae;
+      color: white;
+    }
+
+    td, th {
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Painel Corporativo</h1>
+    <nav>
+      <a href="#">Dashboard</a>
+      <a href="#">Clientes</a>
+      <a href="#">Devoluções</a>
+      <a href="{{ url_for('logout') }}">Sair</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="cards">
+      <div class="card">Clientes: {{ total_clientes }}</div>
+      <div class="card">Devoluções pendentes: {{ devolucoes_pendentes }}</div>
+      <div class="card">Estoque físico: {{ estoque_fisico }}</div>
+    </section>
+
+    <section class="tabela">
+      <h2>Últimas solicitações</h2>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Cliente</th><th>Status</th><th>Data</th></tr>
+        </thead>
+        <tbody>
+          {% for devolucao in devolucoes %}
+          <tr>
+            <td>{{ devolucao.id }}</td>
+            <td>{{ devolucao.cliente_nome }}</td>
+            <td>{{ devolucao.status }}</td>
+            <td>{{ devolucao.criado_em }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

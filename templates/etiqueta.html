@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Etiqueta de Devolução</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+ <style>
+  .etiqueta {
+    width: 400px;
+    padding: 20px;
+    margin: 40px auto;
+    font-family: 'Inter', sans-serif;
+    background: #1c1c1c;       /* fundo escuro na tela */
+    color: #f5f5f5;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+  .etiqueta h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00c9a7;
+  }
+  .etiqueta p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  .etiqueta .codigo {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #92fe9d;
+  }
+  .barcode {
+    text-align: center;
+    margin-top: 15px;
+  }
+  .btn-print {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #00c9a7, #92fe9d);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  @media print {
+    .btn-print {
+      display: none;
+    }
+    body {
+      background: #fff;
+    }
+    .etiqueta {
+      box-shadow: none;
+      border: 1px solid #000;
+      background: #fff;
+      color: #000;
+    }
+    /* Removemos qualquer regra que force o fill do SVG */
+  }
+</style>
+
+  <!-- Biblioteca JsBarcode -->
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+  <div class="etiqueta">
+    <h2>Etiqueta de Devolução</h2>
+    <p><strong>Pedido:</strong> {{ item.pedido }}</p>
+    <p><strong>Cliente:</strong> {{ session['nome'] }}</p>
+    <p><strong>Produto:</strong> {{ item.nome }}</p>
+    <p><strong>Motivo:</strong> {{ item.motivo }}</p>
+    <p><strong>Quantidade:</strong> {{ item.quantidade }}</p>
+    <p><strong>Status:</strong> {{ item.status }}</p>
+    <div class="codigo">
+      Código: {{ item.id }}
+    </div>
+    <div class="barcode">
+      <svg id="barcode"></svg>
+    </div>
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir Etiqueta</button>
+  </div>
+
+<script>
+  // Gera o código de barras sempre em preto
+  JsBarcode("#barcode", "{{ item.id }}", {
+    format: "CODE128",
+    lineColor: "#000",   // preto
+    width: 2,
+    height: 50,
+    displayValue: true
+  });
+</script>
+</body>
+</html>

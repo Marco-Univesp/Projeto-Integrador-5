@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Atualizar Status</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Painel Administrativo</h1>
+  </header>
+
+  <main>
+    <form id="formStatus">
+      <label for="numero">Número da Devolução:</label>
+      <input type="text" id="numero" name="numero" required>
+
+      <label for="status">Novo Status:</label>
+      <select id="status" name="status" required>
+        <option value="Solicitação recebida">Solicitação recebida</option>
+        <option value="Em análise">Em análise</option>
+        <option value="Aprovada para devolução">Aprovada para devolução</option>
+        <option value="Produto entregue no ponto de coleta">Produto entregue no ponto de coleta</option>
+        <option value="Produto em trânsito">Produto em trânsito</option>
+        <option value="Produto recebido">Produto recebido</option>
+        <option value="Reembolso em processamento">Reembolso em processamento</option>
+        <option value="Reembolso concluído">Reembolso concluído</option>
+        <option value="Devolução recusada">Devolução recusada</option>
+      </select>
+
+      <button type="submit">Atualizar Status</button>
+    </form>
+
+    <p id="mensagem"></p>
+  </main>
+
+  <script>
+    document.getElementById("formStatus").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const numero = document.getElementById("numero").value;
+      const status = document.getElementById("status").value;
+
+      fetch(`http://localhost:3000/status/${numero}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("mensagem").textContent = data.message || data.error;
+      })
+      .catch(error => {
+        document.getElementById("mensagem").textContent = "Erro ao atualizar status";
+        console.error(error);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu Cliente</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- Se quiser usar Bootstrap para estilizar os alerts -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+</head>
+<body>
+  <header>
+    <div id="header">
+      <img src="{{ url_for('static', filename='imagens/logoPI.png') }}" alt="Logo" class="logo" />
+      <nav id="nav">
+        <button id="btn-mobile" aria-label="Abrir Menu" aria-haspopup="true" aria-controls="menu" aria-expanded="false">
+          Menu <span id="hamburger"></span>
+        </button>
+        <ul id="menu" role="menu">
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('menu_cliente') }}">Menu Cliente</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Bloco para mensagens flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% set category, message = messages[-1] %}
+        <div class="alert alert-{{ category }}">
+           {{ message }}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <h1>Bem-vindo ao Menu do Cliente</h1>
+    <div class="menu-buttons">
+      <a href="{{ url_for('index') }}" class="btn btn-primary">
+        <span class="icon">📦</span> Cadastrar Devolução
+      </a>
+      <a href="{{ url_for('minhas_devolucoes') }}" class="btn btn-secondary">
+        <span class="icon">📑</span> Minhas Devoluções
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="imagens">
+      <div class="grupo1">
+        <h3>Selo de Segurança</h3>
+        <hr style="background-image: linear-gradient(to right, rgb(50, 188, 175), rgb(203, 203, 207)); height: 2px; border: none;" />
+        <img src="{{ url_for('static', filename='imagens/Frame 128.png') }}" alt="Selo de Segurança" />
+      </div>
+    </div>
+  </footer>

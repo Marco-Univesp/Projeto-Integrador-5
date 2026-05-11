@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalhes da Solicitação</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- Biblioteca JsBarcode -->
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+  <header>
+    <div id="header">
+      <img src="{{ url_for('static', filename='imagens/logoPI.png') }}" alt="Logo" class="logo" />
+      <nav id="nav">
+        <button id="btn-mobile" aria-label="Abrir Menu" aria-haspopup="true" aria-controls="menu" aria-expanded="false">
+          Menu <span id="hamburger"></span>
+        </button>
+        <ul id="menu" role="menu">
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('menu_cliente') }}">Menu Cliente</a></li>
+        </ul>
+      </nav>
+    </div>
+    <h1>Detalhes da Solicitação</h1>
+    <h2>Como devolver seu Produto</h2>
+  </header>
+
+  <main>
+    <section class="etapa">
+      <h3>1. Como embalar o seu produto</h3>
+      <p>Guarde o produto na embalagem original com todos os acessórios e feche com fita adesiva. Lembre-se de embalar apenas os produtos aprovados para devolução.</p>
+      <button class="btn" onclick="window.location.href='{{ url_for('embalar') }}'">
+        Como Preparar O Pacote
+      </button>
+    </section>
+
+    <section class="etapa">
+      <h3>2. Importante</h3>
+      <p>Antes de devolver o seu Produto, remova, rasure ou vire a embalagem do avesso para ocultar a etiqueta original de envio.</p>
+    </section>
+
+    <section class="etapa">
+      <h3>3. Busque um ponto de coleta mais próximo</h3>
+      <p>Vá até um ponto de coleta de sua preferência e leve o pacote embalado. A devolução é por nossa conta!</p>
+      <button class="btn" onclick="window.location.href='{{ url_for('pontos') }}'">
+        Ver Pontos de Coleta Próximos
+      </button>
+    </section>
+
+    <section class="etapa">
+      <h3>4. Cadastrar Devolução</h3>
+      <p>Finalize o processo cadastrando sua devolução no sistema.</p>
+      <button class="btn btn-primary" onclick="window.location.href='{{ url_for('registro_devolucao') }}'">
+        📦 Cadastrar Devolução
+      </button>
+    </section>
+
+    <section class="etapa">
+      <h3>5. Imprimir Etiqueta</h3>
+      <p>Finalize sua devolução gerando e imprimindo a etiqueta para colar no pacote.</p>
+      <button class="btn btn-primary" onclick="window.location.href='{{ url_for('minhas_devolucoes') }}'">
+        🎫 Imprimir Etiqueta
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <div class="imagens">
+      <div class="grupo1">
+        <h3>Selo de Segurança</h3>
+        <hr style="background-image: linear-gradient(to right, rgb(50, 188, 175), rgb(203, 203, 207)); height: 2px; border: none;" />
+        <img src="{{ url_for('static', filename='imagens/Frame 128.png') }}" alt="Selo de Segurança" />
+      </div>
+    </div>
+    <button class="btn cancelar">Cancelar solicitação</button>
+    <button class="btn status" onclick="window.location.href='{{ url_for('status_devolucao') }}'">
+      Acompanhar Status da Devolução
+    </button>
+    <button class="btn status" onclick="window.location.href='{{ url_for('status_cliente') }}'">
+      Ver Linha do Tempo da Devolução
+    </button>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

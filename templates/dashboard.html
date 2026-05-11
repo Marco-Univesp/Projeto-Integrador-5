@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <!-- Cards -->
+  <section class="cards">
+    <div class="card success">Clientes: {{ total_clientes }}</div>
+    <div class="card warning">Devoluções pendentes: {{ devolucoes_pendentes }}</div>
+    <div class="card info">Estoque físico: {{ estoque_fisico }}</div>
+  </section>
+
+  <!-- Gráfico -->
+  <section class="grafico">
+    <h2>Devoluções por motivo</h2>
+    <canvas id="graficoDevolucoes"></canvas>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('graficoDevolucoes').getContext('2d');
+    const graficoDevolucoes = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: {{ labels|tojson }},
+        datasets: [{
+          label: 'Quantidade',
+          data: {{ valores|tojson }},
+          backgroundColor: '#32bcae'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: 'Motivos de Devolução' }
+        }
+      }
+    });
+  </script>
+{% endblock %}

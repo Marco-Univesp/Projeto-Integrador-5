@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Página não encontrada</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_admin.css') }}">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,7 +15,7 @@
     }
 
     .logo {
-      width: 150px;
+      width: 140px;
       margin-bottom: 30px;
     }
 
@@ -25,8 +26,9 @@
     }
 
     h2 {
-      font-size: 24px;
+      font-size: 26px;
       margin-bottom: 20px;
+      color: #1d3557;
     }
 
     p {
@@ -34,28 +36,29 @@
       color: #666;
     }
 
-    a {
+    .btn {
       display: inline-block;
-      margin-top: 20px;
+      margin: 15px;
       text-decoration: none;
       color: #fff;
-      background-color: #1d3557;
+      background-color: #32bcae;
       padding: 12px 24px;
       border-radius: 6px;
       font-weight: bold;
       transition: background-color 0.3s ease;
     }
 
-    a:hover {
-      background-color: #457b9d;
+    .btn:hover {
+      background-color: #27988c;
     }
   </style>
 </head>
 <body>
-  <img src="{{ url_for('static', filename='imagens/logoPI.png') }}" alt="Logo" class="logo">
+  <img src="{{ url_for('static', filename='img/reloop_logo.png') }}" alt="Logo Reloop" class="logo">
   <h1>404</h1>
   <h2>Oops! Página não encontrada</h2>
   <p>A página que você tentou acessar não existe ou foi movida.</p>
-  <a href="{{ url_for('home') }}">Voltar para a página inicial</a>
+  <a href="{{ url_for('home') }}" class="btn">🏠 Voltar para Home</a>
+  <a href="{{ url_for('painel_admin') }}" class="btn">📊 Ir para o Painel</a>
 </body>
 </html>

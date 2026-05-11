@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Sistema Reloop{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_admin.css') }}">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='/imagens/logoPI.png') }}" alt="Reloop Logo">
+    </div>
+    <nav>
+      <a href="{{ url_for('painel_admin') }}">Dashboard</a>
+      <a href="{{ url_for('estoque_devolucao') }}">Devoluções</a>
+      <a href="{{ url_for('estoque_fisico') }}">Estoque</a>
+    </nav>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

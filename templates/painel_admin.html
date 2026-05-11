@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Painel Admin{% endblock %}
+
+{% block content %}
+  <section class="tabela">
+    <h2>Últimas solicitações</h2>
+
+    <!-- Botões de filtro -->
+    <div class="filtros">
+      <button class="filtro" data-status="Todos">Todos</button>
+      <button class="filtro" data-status="Pendente">Pendentes</button>
+      <button class="filtro" data-status="Aprovado">Aprovados</button>
+      <button class="filtro" data-status="Rejeitado">Rejeitados</button>
+    </div>
+
+    <table id="tabelaDevolucoes">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Pedido</th>
+          <th>Cliente</th>
+          <th>Motivo</th>
+          <th>Status</th>
+          <th>Quantidade</th>
+          <th>Preço</th>
+          <th>Imagem</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for devolucao in devolucoes %}
+        <tr>
+          <td>{{ devolucao.id }}</td>
+          <td>{{ devolucao.pedido }}</td>
+          <td>{{ devolucao.nome }}</td>
+          <td>{{ devolucao.motivo }}</td>
+          <td class="status {{ devolucao.status|lower }}">{{ devolucao.status }}</td>
+          <td>{{ devolucao.quantidade }}</td>
+          <td>R$ {{ "%.2f"|format(devolucao.preco or 0.0) }}</td>
+          <td>
+            {% if devolucao.imagem %}
+              <img src="{{ url_for('static', filename='uploads/' ~ devolucao.imagem) }}" 
+                   alt="Imagem do produto" class="img-dev">
+            {% else %}
+              Sem imagem
+            {% endif %}
+          </td>
+          <td>
+            <!-- Atualizar status -->
+            <form method="POST" action="{{ url_for('atualizar_status', id=devolucao.id) }}">
+              <select name="status">
+                <option value="Pendente" {% if devolucao.status == 'Pendente' %}selected{% endif %}>Pendente</option>
+                <option value="Aprovado" {% if devolucao.status == 'Aprovado' %}selected{% endif %}>Aprovado</option>
+                <option value="Rejeitado" {% if devolucao.status == 'Rejeitado' %}selected{% endif %}>Rejeitado</option>
+              </select>
+              <button type="submit">Atualizar</button>
+            </form>
+
+            <!-- Mover para estoque físico -->
+            <form method="POST" action="{{ url_for('mover_para_estoque_fisico', id=devolucao.id) }}">
+              <button type="submit" class="btn-estoque">📦 Estoque</button>
+            </form>
+
+            <!-- Mover para descarte -->
+            <form method="POST" action="{{ url_for('mover_para_descarte_devolucao', id=devolucao.id) }}">
+              <button type="submit" class="btn-descarte">🗑️ Descarte</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Scripts DataTables -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      const tabela = $('#tabelaDevolucoes').DataTable({
+        pageLength: 10,
+        language: {
+          url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"
+        }
+      });
+
+      // Filtro por status
+      $('.filtro').on('click', function() {
+        const status = $(this).data('status');
+        if (status === "Todos") {
+          tabela.column(4).search("").draw();
+        } else {
+          tabela.column(4).search(status).draw();
+        }
+      });
+    });
+  </script>
+{% endblock %}

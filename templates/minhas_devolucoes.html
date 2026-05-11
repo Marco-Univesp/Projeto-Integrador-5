@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Minhas Devoluções</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1 style="text-align:center; color:#00c9a7; margin-top:20px;">Minhas Devoluções</h1>
+  </header>
+
+  <main class="my-returns-section">
+    {% if devolucoes %}
+    <table class="tabela-devolucoes">
+      <thead>
+        <tr>
+          <th>Pedido</th>
+          <th>Produto</th>
+          <th>Motivo</th>
+          <th>Imagem</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Ponto</th>
+          <th>Status</th>
+          <th>Etiqueta</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for devolucao in devolucoes %}
+        <tr>
+          <td>{{ devolucao['pedido'] }}</td>
+          <td>{{ devolucao['nome'] }}</td>
+          <td>{{ devolucao['motivo'] }}</td>
+          <td>
+            {% if devolucao['imagem'] %}
+              <img src="{{ url_for('static', filename='uploads/' ~ devolucao['imagem']) }}" alt="Imagem do produto" class="img-dev">
+            {% else %}
+              Sem imagem
+            {% endif %}
+          </td>
+          <td>R$ {{ devolucao['preco'] }}</td>
+          <td>{{ devolucao['quantidade'] }}</td>
+          <td>{{ devolucao['ponto'] }}</td>
+          <td>{{ devolucao['status'] }}</td>
+          <td>
+            <form method="GET" action="{{ url_for('gerar_etiqueta', id=devolucao['id']) }}">
+              <button type="submit">🎫 Imprimir</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p style="text-align:center; margin-top:20px;">⚠️ Nenhuma devolução encontrada.</p>
+    {% endif %}
+  </main>
+
+  <footer>
+    <button class="voltar" onclick="window.location.href='{{ url_for('menu_cliente') }}'">
+      ⬅️ Voltar ao Menu Cliente
+    </button>
+  </footer>
+</body>
+</html>

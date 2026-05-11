@@ -1,0 +1,133 @@
+/* ================================
+   Estilo geral
+=================================== */
+body {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: 'Inter', sans-serif;
+  color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+/* ================================
+   Header e menu
+=================================== */
+#header {
+  box-sizing: border-box;
+  height: 70px;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(15, 32, 39, 0.95);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+#menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+#menu li a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+#menu li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #00c9a7;
+  transition: width 0.3s ease;
+}
+
+#menu li a:hover {
+  color: #00c9a7;
+}
+
+#menu li a:hover::after {
+  width: 100%;
+}
+
+/* ================================
+   Botões
+=================================== */
+button {
+  background: linear-gradient(135deg, #00c9a7, #92fe9d);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+/* ================================
+   Footer
+=================================== */
+footer {
+  text-align: center;
+  background: rgba(15, 32, 39, 0.95);
+  color: #aaa;
+  padding: 1rem;
+}
+
+.grupo1 img {
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+/* ================================
+   Minhas Devoluções / Painel Admin
+=================================== */
+.tabela-devolucoes {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tabela-devolucoes th, .tabela-devolucoes td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.tabela-devolucoes th {
+  background-color: #32bcae;
+  color: #fff;
+}
+
+/* Imagens maiores nos cards */
+.img-dev-card {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 5px;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Imagens menores nas tabelas */
+.img-dev-table {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 4px;
+}

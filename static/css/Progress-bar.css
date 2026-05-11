@@ -1,0 +1,80 @@
+.progress-container {
+  width: 100%;
+  margin: 30px auto;
+  overflow-x: auto; /* permite rolagem em telas pequenas */
+}
+
+.progressbar {
+  counter-reset: step;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap; /* quebra em várias linhas se necessário */
+}
+
+.progressbar li {
+  position: relative;
+  flex: 1 1 100px; /* mínimo de 100px por etapa */
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.progressbar li::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  border: 2px solid #007BFF;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.progressbar li::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #007BFF;
+  top: 12px;
+  left: -50%;
+  z-index: -1;
+}
+
+.progressbar li:first-child::after {
+  content: none;
+}
+
+.progressbar li.active::before {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+.progressbar li.active::after {
+  background-color: #007BFF;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 600px) {
+  .progressbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .progressbar li {
+    flex: none;
+    text-align: left;
+  }
+
+  .progressbar li::after {
+    width: 2px;
+    height: 100%;
+    top: -50%;
+    left: 12px;
+  }
+}

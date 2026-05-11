@@ -1,0 +1,163 @@
+/* ================================
+   Estilo geral e layout
+=================================== */
+body {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: 'Inter', sans-serif;
+  color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+/***************** Cabeçalho *********************/
+#header {
+  box-sizing: border-box;
+  height: 70px;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(15, 32, 39, 0.95);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+#menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+#menu a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+}
+
+#menu a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #00c9a7;
+  transition: width 0.3s ease;
+}
+
+#menu a:hover {
+  color: #00c9a7;
+}
+
+#menu a:hover::after {
+  width: 100%;
+}
+
+/***************** Botões *********************/
+button {
+  background: linear-gradient(135deg, #00c9a7, #92fe9d);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+/***************** Rodapé *********************/
+footer {
+  text-align: center;
+  background: rgba(15, 32, 39, 0.95);
+  color: #aaa;
+  padding: 1rem;
+}
+
+.grupo1 img {
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+/* ================================
+   Tela de Registro de Devoluções
+=================================== */
+.container7 {
+  max-width: 900px;
+  width: 95%;
+  margin: 60px auto;
+  padding: 25px;
+  background: #1c1c1c;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container7 h1 {
+  text-align: center;
+  color: #00c9a7;
+  margin-bottom: 1.5rem;
+}
+
+.return-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+#formDevolucao {
+  flex: 1 1 45%;
+  background: #2c2c2c;
+  padding: 20px;
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#formDevolucao label {
+  color: #f5f5f5;
+}
+
+#formDevolucao input,
+#formDevolucao textarea,
+#formDevolucao select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1c1c1c;
+  color: #fff;
+}
+
+.my-returns-section {
+  flex: 1 1 45%;
+  background: #2c2c2c;
+  padding: 20px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+@media (max-width: 700px) {
+  .return-section {
+    flex-direction: column;
+  }
+  #formDevolucao,
+  .my-returns-section {
+    flex: 1 1 100%;
+  }
+}
