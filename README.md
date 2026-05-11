@@ -47,5 +47,13 @@ Siga os passos abaixo para configurar o ambiente:
 
 1. **Clone este repositório:**
    ```bash
-   git clone https://github.com/Marco-Univesp/Projeto-Integrador-4
+   git clone https://github.com/Marco-Univesp/Projeto-Integrador-5
+   uv run app.py
+   ```
+2. **Instale o Gerenciador de Pacotes UV:
+https://docs.astral.sh/uv/getting-started/installation/
+
+3. **Rode**
+   ```bash
+   uv run app.py
    ```
