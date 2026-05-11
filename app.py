@@ -140,11 +140,6 @@ def atualizar_status(id):
 # ---------------------- ROTAS CLIENTE ---------------------- #
 
 
-@app.route("/cliente")
-def cliente():
-    return render_template("cliente.html")
-
-
 @app.route("/cadastroc", methods=["GET", "POST"])
 def cadastroc():
     if request.method == "GET":
@@ -264,11 +259,6 @@ def minhas_devolucoes():
     return render_template("minhas_devolucoes.html", devolucoes=devolucoes)
 
 
-@app.route("/status")
-def status_devolucao():
-    return render_template("status.html")
-
-
 @app.route("/embalar")
 def embalar():
     return render_template("embalar.html")
@@ -277,11 +267,6 @@ def embalar():
 @app.route("/pontos")
 def pontos():
     return render_template("pontos.html")
-
-
-@app.route("/status_cliente")
-def status_cliente():
-    return render_template("status_cliente.html")
 
 
 @app.route("/etiqueta/<int:id>")
