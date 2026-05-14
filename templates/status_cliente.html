@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Status da Devolução</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Status da Solicitação</h1>
+  </header>
+  <main>
+    <div class="timeline">
+      <div class="step {% if status == 'registrada' or status in ['analise','aceito','transporte','concluida'] %}concluido{% endif %}">📝 Solicitação registrada</div>
+      <div class="step {% if status == 'analise' %}ativo{% elif status in ['aceito','transporte','concluida'] %}concluido{% endif %}">🔍 Produto em análise</div>
+      <div class="step {% if status == 'aceito' %}ativo{% elif status in ['transporte','concluida'] %}concluido{% endif %}">✅ Produto aceito</div>
+      <div class="step {% if status == 'transporte' %}ativo{% elif status == 'concluida' %}concluido{% endif %}">📦 Produto em transporte</div>
+      <div class="step {% if status == 'concluida' %}ativo{% endif %}">🎉 Devolução concluída</div>
+    </div>
+    <p>Última atualização: {{ atualizado_em }}</p>
+  </main>
+</body>
+</html>

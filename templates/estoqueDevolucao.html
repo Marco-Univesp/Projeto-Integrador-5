@@ -16,9 +16,9 @@
         <button aria-label="Abrir Menu" id="btn-mobile" aria-controls="menu">Menu</button>
 
         <ul id="menu">
-          {#<li><a href="{{ url_for('acesso') }}">Home</a></li>#}
+          <li><a href="{{ url_for('acesso') }}">Home</a></li>
           <li><a href="{{ url_for('estoque_fisico') }}">Estoque Físico</a></li>
-          {#<li><a href="{{ url_for('reclamacoes') }}">Reclamações</a></li>#}
+          <li><a href="{{ url_for('reclamacoes') }}">Reclamações</a></li>
           <li><a href="{{ url_for('descarte') }}">Descartes</a></li>
           <a href="{{ url_for('home') }}" style="color: rgb(153, 140, 21);">Sair</a>
         </ul>
